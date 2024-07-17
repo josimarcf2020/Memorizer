@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-class EmojiMemoryGame {
+class EmojiMemoryGame: ObservedObject {
     private static let emojis = [ "👻", "👺", "☠️", "🎃", "👾", "🤡", "👽", "🤖", "👁️", "🕸️" ]
     
     private static func createMemoryGame() -> MemoryGame<String> {
-        return MemoryGame(numberOfPairOfCards: 4) { pairIndex in
+        return MemoryGame(numberOfPairOfCards: 10) { pairIndex in
             if emojis.indices.contains(pairIndex){
                 return emojis[pairIndex]
             } else {
@@ -20,11 +20,17 @@ class EmojiMemoryGame {
             
         }
     }
-    
-    private var model = EmojiMemoryGame.createMemoryGame()
+        
+    @Published private var model = EmojiMemoryGame.createMemoryGame()
     
     var cards: Array<MemoryGame<String>.Card> {
         return model.cards
+    }
+    
+    // MARK: Intents
+    
+    func shuffle() {
+        model.shuffle()
     }
     
     func choose(_ card: MemoryGame<String>.Card) {
