@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EmojiMemoryGameView: View {
-    @ObservedObject var viewModel: EmojiMemoryGame
+    ObservedObject var viewModel: EmojiMemoryGame
     let emojis = [ "👻", "👺", "☠️", "🎃", "👾", "🤡", "👽", "🤖", "👁️", "🕸️" ]
     @State var cardCount : Int = 10
     var body: some View {
